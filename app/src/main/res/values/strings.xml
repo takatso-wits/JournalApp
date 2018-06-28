@@ -2,4 +2,5 @@
     <string name="app_name">Journal App</string>
     <string name="journal_registration_title">Registration</string>
     <string name="journal_login_title">Login</string>
+    <string name="journal_welcome_message">Welcome</string>
 </resources>

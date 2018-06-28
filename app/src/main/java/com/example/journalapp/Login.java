@@ -2,6 +2,7 @@ package com.example.journalapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     EditText email, password;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
+    TextView startRegistration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         /*Check whether the user is already logged in*/
         if(firebaseAuth.getCurrentUser() != null){
             finish();
-            /*Start the Journal Activity*/
+            /*Start the Journal activity*/
+            Intent intent = new Intent(getApplicationContext(), JournalEntries.class);
+            startActivity(intent);
         }
 
         btnLogin.setOnClickListener(this);
@@ -48,6 +52,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         btnLogin = (Button) findViewById(R.id.btn_login);
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
+        startRegistration =(TextView)findViewById(R.id.tv_start_registration_activity);
 
     }
 
@@ -55,6 +60,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         if(v == btnLogin){
             statLogin();
+        }
+
+        if(v == startRegistration){
+            finish();
+            Intent intent = new Intent(getApplicationContext(), Registration.class);
+            startActivity(intent);
         }
     }
 
@@ -87,6 +98,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
                             /*Start Journal Activity*/
+                            finish();
+                            Intent intent = new Intent(getApplicationContext(),
+                                    JournalEntries.class);
+                            startActivity(intent);
 
                         }else{
                             Toast.makeText(getApplicationContext(),

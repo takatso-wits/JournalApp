@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Registration extends AppCompatActivity implements View.OnClickListener {
     EditText username, password, email;
     Button btnRegistration;
+    TextView startLoginActivity;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
 
@@ -36,15 +38,24 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         if(firebaseAuth.getCurrentUser() != null){
             finish();
             /*Start the Journal activity*/
+            Intent intent = new Intent(getApplicationContext(), JournalEntries.class);
+            startActivity(intent);
         }
 
         btnRegistration.setOnClickListener(this);
+        startLoginActivity.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View v) {
         if(v == btnRegistration){
             startRegistration();
+        }
+        /*Start Login Activity*/
+        if(v == startLoginActivity){
+            finish();
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
         }
 
     }
@@ -56,6 +67,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         btnRegistration = (Button)findViewById(R.id.btn_register);
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
+        startLoginActivity = (TextView) findViewById(R.id.tv_start_login_activity);
     }
 
     private void startRegistration() {
@@ -68,6 +80,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
          String passwordError = "Password field cannot be empty";
          String progressMessage = "Registration underway...";
          Context context = getApplicationContext();
+
          /*Check if the fields are not empty are not empty*/
          if(TextUtils.isEmpty(user_name)){
              Toast.makeText(context,nameError,Toast.LENGTH_SHORT).show();
@@ -93,11 +106,14 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                         progressDialog.dismiss();
 
                         if(task.isSuccessful()){
-//                            finish();
+                            finish();
                             /*Start the Journal Activity*/
                             Toast.makeText(getApplicationContext(),
                                     "Successfully Registered",
                                     Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(),
+                                    JournalEntries.class);
+                            startActivity(intent);
 
                         }else{
                             Toast.makeText(getApplicationContext(),
