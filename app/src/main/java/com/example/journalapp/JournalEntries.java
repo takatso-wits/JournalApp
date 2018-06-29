@@ -3,6 +3,8 @@ package com.example.journalapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +15,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class JournalEntries extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
+    private JournalAdapter journalAdapter;
+    private RecyclerView entry;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +25,14 @@ public class JournalEntries extends AppCompatActivity {
         setContentView(R.layout.activity_journal_entries);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        entry = (RecyclerView)findViewById(R.id.rv_journal_entries);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        entry.setLayoutManager(layoutManager);
+
+        journalAdapter = new JournalAdapter(1);
+        entry.setAdapter(journalAdapter);
+
 
     }
 
