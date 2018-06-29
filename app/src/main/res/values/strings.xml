@@ -5,4 +5,5 @@
     <string name="journal_welcome_message">Welcome</string>
     <string name="menu_new_entry">New Journal Entry</string>
     <string name="menu_sign_out">Sign Out</string>
+    <string name="journal_new_entry_title">Add Thoughts</string>
 </resources>

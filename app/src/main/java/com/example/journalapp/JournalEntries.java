@@ -53,9 +53,8 @@ public class JournalEntries extends AppCompatActivity {
             case R.id.menuNewEntry:
                 /*This is where I will add a new entry*/
                 //newEntry();
-                Toast.makeText(this,
-                        "Come back in a very short while..",
-                        Toast.LENGTH_SHORT).show();
+                intent = new Intent(getApplicationContext(),NewJournalEntry.class);
+                startActivity(intent);
                 return true;
 
             case R.id.menuSignOut:
