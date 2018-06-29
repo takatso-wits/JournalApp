@@ -30,7 +30,7 @@ public class JournalEntries extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         entry.setLayoutManager(layoutManager);
 
-        journalAdapter = new JournalAdapter(1);
+        journalAdapter = new JournalAdapter(5);
         entry.setAdapter(journalAdapter);
 
 
