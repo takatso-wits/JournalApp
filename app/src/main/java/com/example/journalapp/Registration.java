@@ -36,7 +36,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         /*Check whether the user is already logged in*/
         if(firebaseAuth.getCurrentUser() != null){
-            finish();
             /*Start the Journal activity*/
             Intent intent = new Intent(getApplicationContext(), JournalEntries.class);
             startActivity(intent);
@@ -53,7 +52,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
         /*Start Login Activity*/
         if(v == startLoginActivity){
-            finish();
             Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);
         }
@@ -106,7 +104,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                         progressDialog.dismiss();
 
                         if(task.isSuccessful()){
-                            finish();
                             /*Start the Journal Activity*/
                             Toast.makeText(getApplicationContext(),
                                     "Successfully Registered",

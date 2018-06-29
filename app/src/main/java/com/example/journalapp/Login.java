@@ -35,7 +35,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         /*Check whether the user is already logged in*/
         if(firebaseAuth.getCurrentUser() != null){
-            finish();
             /*Start the Journal activity*/
             Intent intent = new Intent(getApplicationContext(), JournalEntries.class);
             startActivity(intent);
@@ -63,7 +62,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
 
         if(v == startRegistration){
-            finish();
             Intent intent = new Intent(getApplicationContext(), Registration.class);
             startActivity(intent);
         }
@@ -98,7 +96,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
                             /*Start Journal Activity*/
-                            finish();
                             Intent intent = new Intent(getApplicationContext(),
                                     JournalEntries.class);
                             startActivity(intent);

@@ -46,7 +46,6 @@ public class JournalEntries extends AppCompatActivity {
                 return true;
 
             case R.id.menuSignOut:
-                finish();
                 firebaseAuth.signOut();
                 intent = new Intent(getApplicationContext(),Login.class);
                 startActivity(intent);
