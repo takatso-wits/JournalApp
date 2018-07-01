@@ -59,7 +59,7 @@ public class NewJournalEntry extends AppCompatActivity  implements View.OnClickL
 
             Entries entries = new Entries(entry_id,entryName,thoughts);
 
-            databaseReference.setValue(entries);
+            databaseReference.child(entry_id).setValue(entries);
             Toast.makeText(getApplicationContext(),"Entry created",Toast.LENGTH_LONG).show();
 
 

@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".Login" />
         <activity android:name=".JournalEntries" />
-        <activity android:name=".NewJournalEntry"></activity>
+        <activity android:name=".NewJournalEntry" />
+        <activity android:name=".DisplayEntry"></activity>
     </application>
 
 </manifest>

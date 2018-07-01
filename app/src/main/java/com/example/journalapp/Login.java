@@ -58,7 +58,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v == btnLogin){
-            statLogin();
+            startLogin();
         }
 
         if(v == startRegistration){
@@ -67,7 +67,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    private void statLogin() {
+    private void startLogin() {
 
         String user_email = email.getText().toString().trim();
         String user_password = password.getText().toString().trim();

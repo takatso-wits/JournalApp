@@ -8,15 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class JournalEntries extends AppCompatActivity {
+public class JournalEntries extends AppCompatActivity implements View.OnClickListener {
 
     FirebaseAuth firebaseAuth;
-    private JournalAdapter journalAdapter;
-    private RecyclerView entry;
+    TextView startRegistration;
 
 
     @Override
@@ -26,12 +27,11 @@ public class JournalEntries extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        entry = (RecyclerView)findViewById(R.id.rv_journal_entries);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        entry.setLayoutManager(layoutManager);
 
-        journalAdapter = new JournalAdapter(5);
-        entry.setAdapter(journalAdapter);
+        startRegistration = (TextView)findViewById(R.id.tv_start_registration_activity);
+
+
+
 
 
     }
@@ -75,5 +75,13 @@ public class JournalEntries extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == startRegistration){
+            Intent intent = new Intent(getApplicationContext(),Registration.class);
+            startActivity(intent);
+        }
     }
 }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "677562683983-e3s602inh281qo8q7a1jom1s554lml55.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.journalapp",
+            "certificate_hash": "0d4baf2f6017b48006d2c4e683a01e6f45fbc5f4"
+          }
+        },
+        {
           "client_id": "677562683983-4gg8fm5pdur07spq6a36g4jiis5cjafo.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677562683983-4gg8fm5pdur07spq6a36g4jiis5cjafo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

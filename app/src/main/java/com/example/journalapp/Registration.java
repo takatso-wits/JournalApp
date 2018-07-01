@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Registration extends AppCompatActivity implements View.OnClickListener {
     EditText username, password, email;
@@ -24,6 +26,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     TextView startLoginActivity;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
 
 
     @Override
@@ -52,6 +55,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
         /*Start Login Activity*/
         if(v == startLoginActivity){
+
             Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);
         }
@@ -66,12 +70,13 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         progressDialog = new ProgressDialog(this);
         firebaseAuth = FirebaseAuth.getInstance();
         startLoginActivity = (TextView) findViewById(R.id.tv_start_login_activity);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
     }
 
     private void startRegistration() {
-         String user_email = email.getText().toString().trim();
-         String user_password = password.getText().toString().trim();
-         String user_name = username.getText().toString().trim();
+         final String user_email = email.getText().toString().trim();
+         final String user_password = password.getText().toString().trim();
+         final String user_name = username.getText().toString().trim();
 
          String nameError = "Name field cannot be empty";
          String emailError = "Email field cannot be empty";
@@ -104,10 +109,18 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                         progressDialog.dismiss();
 
                         if(task.isSuccessful()){
-                            /*Start the Journal Activity*/
                             Toast.makeText(getApplicationContext(),
                                     "Successfully Registered",
                                     Toast.LENGTH_SHORT).show();
+                            String user_id = databaseReference.push().getKey();
+
+                            Users users = new Users(user_id,user_name,user_email,user_password);
+
+                            databaseReference.child(user_id).setValue(users);
+                            Toast.makeText(getApplicationContext(),"Entry created",Toast.LENGTH_LONG).show();
+
+                            /*Start the Journal Activity*/
+
                             Intent intent = new Intent(getApplicationContext(),
                                     JournalEntries.class);
                             startActivity(intent);
